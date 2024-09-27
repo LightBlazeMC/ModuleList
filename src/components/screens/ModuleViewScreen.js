@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import Screen from "../layout/screen";
 
 const ModuleViewScreen = () => {
   //inits
@@ -8,20 +8,12 @@ const ModuleViewScreen = () => {
 
   //view
   return (
-    <View style={styles.container}>
+    <Screen>
       <Text>View</Text>
-      <StatusBar style="light" />
-    </View>
+    </Screen>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFC0CB",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});
 
 export default ModuleViewScreen;
