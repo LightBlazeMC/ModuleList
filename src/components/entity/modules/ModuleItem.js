@@ -9,7 +9,7 @@ const ModuleItem = ({ module, onSelect }) => {
     <Pressable onPress={() => onSelect(module)}>
       <View style={styles.item}>
         <Text style={styles.text}>
-          {module.ModuleCode} {module.ModuleName}
+          {module.ModuleCode}: {module.ModuleName}
         </Text>
       </View>
     </Pressable>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#625095",
     fontFamily: "Courier New",
-    paddingVertical: 2,
+    paddingVertical: 6,
     paddingHorizontal: 12,
   },
 });
