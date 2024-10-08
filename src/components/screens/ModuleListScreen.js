@@ -5,13 +5,16 @@ import initialModules from "../../data/modules.js";
 import ModuleList from "../entity/modules/ModuleList.js";
 import { useState } from "react";
 
-const ModuleListScreen = () => {
+const ModuleListScreen = ({ navigation }) => {
   //inits
 
   //state
   const [modules, setModules] = useState(initialModules);
 
   //handlers
+  const handleSelect = (module) =>
+    navigation.navigate("ModuleViewScreen", { module });
+
   const handleDelete = (module) => {
     setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
     console.log(
@@ -24,8 +27,8 @@ const ModuleListScreen = () => {
   //view
   return (
     <Screen>
-      <Text style={styles.text}>Press entry to delete.</Text>
-      <ModuleList modules={modules} onSelect={handleDelete} />
+      <Text style={styles.text}>Press item to view.</Text>
+      <ModuleList modules={modules} onSelect={handleSelect} />
     </Screen>
   );
 };
