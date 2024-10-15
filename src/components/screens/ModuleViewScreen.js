@@ -4,7 +4,7 @@ import ModuleView from "../entity/modules/ModuleView";
 
 const ModuleViewScreen = ({ navigate, route }) => {
   //inits
-  const { module } = route.params;
+  const { module, onDelete } = route.params;
 
   //state
   //handlers
@@ -12,7 +12,7 @@ const ModuleViewScreen = ({ navigate, route }) => {
   //view
   return (
     <Screen>
-      <ModuleView module={module} />
+      <ModuleView module={module} onDelete={onDelete} />
     </Screen>
   );
 };

@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { LogBox, StyleSheet, Text } from "react-native";
 import Screen from "../layout/screen";
 import initialModules from "../../data/modules.js";
 //import ModuleItem from "../entity/modules/ModuleItem.js";
@@ -7,13 +7,14 @@ import { useState } from "react";
 
 const ModuleListScreen = ({ navigation }) => {
   //inits
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
 
   //state
   const [modules, setModules] = useState(initialModules);
 
   //handlers
-  const handleSelect = (module) =>
-    navigation.navigate("ModuleViewScreen", { module });
 
   const handleDelete = (module) => {
     setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
@@ -24,6 +25,15 @@ const ModuleListScreen = ({ navigation }) => {
       `Module ${module.ModuleCode} - "${module.ModuleName}" has been deleted from the list.`
     );
   };
+
+  const onDelete = (module) => {
+    handleDelete(module);
+    navigation.goBack();
+  };
+
+  const handleSelect = (module) =>
+    navigation.navigate("ModuleViewScreen", { module, onDelete });
+
   //view
   return (
     <Screen>
