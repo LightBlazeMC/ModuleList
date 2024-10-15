@@ -4,6 +4,8 @@ import initialModules from "../../data/modules.js";
 //import ModuleItem from "../entity/modules/ModuleItem.js";
 import ModuleList from "../entity/modules/ModuleList.js";
 import { useState } from "react";
+import { Button, ButtonTray } from "../UI/button.js";
+import Icons from "../UI/Icons.js";
 
 const ModuleListScreen = ({ navigation }) => {
   //inits
@@ -31,14 +33,26 @@ const ModuleListScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleSelect = (module) =>
+  const onAdd = (module) => {
+    handleAdd(module);
+    navigation.goBack();
+  };
+
+  const gotoViewScreen = (module) =>
     navigation.navigate("ModuleViewScreen", { module, onDelete });
+
+  const handleAdd = (module) => setModules([...modules, module]);
+
+  const gotoAddScreen = () => navigation.navigate("ModuleAddScreen", { onAdd });
 
   //view
   return (
     <Screen>
       <Text style={styles.text}>Press item to view.</Text>
-      <ModuleList modules={modules} onSelect={handleSelect} />
+      <ButtonTray>
+        <Button label="Add" icon={<Icons.Add />} onclick={gotoAddScreen} />
+      </ButtonTray>
+      <ModuleList modules={modules} onSelect={gotoViewScreen} />
     </Screen>
   );
 };
