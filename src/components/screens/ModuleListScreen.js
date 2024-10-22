@@ -27,6 +27,7 @@ const ModuleListScreen = ({ navigation }) => {
       `Module ${module.ModuleCode} - "${module.ModuleName}" has been deleted from the list.`
     );
   };
+  const handleAdd = (module) => setModules([...modules, module]);
 
   const onDelete = (module) => {
     handleDelete(module);
@@ -40,8 +41,6 @@ const ModuleListScreen = ({ navigation }) => {
 
   const gotoViewScreen = (module) =>
     navigation.navigate("ModuleViewScreen", { module, onDelete });
-
-  const handleAdd = (module) => setModules([...modules, module]);
 
   const gotoAddScreen = () => navigation.navigate("ModuleAddScreen", { onAdd });
 
